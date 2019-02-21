@@ -7,7 +7,7 @@ from aws_connectors import aws_connectors
 
 def save_document_in_collection(suggestion):
     
-    client = MongoClient('localhost', 27017)
+    client = MongoClient('mongodb', 27017)
     db = client.suggestions
     sug = db.sug
 
