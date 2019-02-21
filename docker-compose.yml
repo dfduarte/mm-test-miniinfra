@@ -1,0 +1,33 @@
+version: "3"
+services:
+  mongodb:
+    image: tutum/mongodb
+    environment:
+      - AUTH=no
+    ports:
+      - "27017:27017"
+    expose:
+      - "27017"
+    networks:
+      - mycluster
+  api:
+    build: ./api
+    ports:
+      - "8090:8090"
+    environment:
+      - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+  worker:
+    build: ./worker
+    environment:
+      - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+    depends_on:
+      - mongodb
+    networks:
+      - mycluster
+networks:
+    mycluster:
+        driver: bridge
