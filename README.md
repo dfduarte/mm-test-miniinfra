@@ -81,7 +81,7 @@ Why passing the variables inline? That's because docker-compose needs this to pa
 
 We got 2 different applications with a database:
 
-An API which receives a JSON through a POST. This JSON basically only must have a "suggestion" attribute key followed by a free string value. For example:
+* An API which receives a JSON through a POST. This JSON basically only must have a "suggestion" attribute key followed by a free string value. For example:
 
 ```
 {'suggestion': 'this is a example of suggestion'}
@@ -97,7 +97,7 @@ You can use cURL or Postman for this task.
 
 You must see a success message as a output. Otherwise, you'll see an error asking for the correct JSON payload/obj.
 
-At the other side, we got another container running a worker, which will collect all the queue, delete the grabbed messages from it and feed an MongoDB (accessible through mongodb:27017 in the cluster).
+* At the other side, we got another container running a worker, which will collect all the queue, delete the grabbed messages from it and feed an MongoDB (accessible through mongodb:27017 in the cluster). This worker will keep running forever pooling all the messages
 
 Again, since it's only for show, this Mongo server don't have any authentication set. BE AWARE TO NOT RUN THIS IN A PROD ENVIRONMENT, SINCE IT CAN HURT IT, you know...
 
