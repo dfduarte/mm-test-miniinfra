@@ -24,6 +24,8 @@ AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} \
 AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} terraform apply -auto-approve
 ```
 
+**NOTE**:"You can ditch/ignore the inline variables if you have an ~/.aws/credentials file set
+
 **WARNING**: I'm assuming at this point you already have a specific IAM user created with bare minimum permissions for SQS and all the required things. That wasn't requested on documentation, that's why!
 
 Considering this is only for show and code test purposes, I wasn't concerned to tight the SQS policies too much, so I used a generic one. The policy follows:
@@ -70,6 +72,8 @@ AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} docker-compose up
 ```
 
 Why passing the variables inline? That's because docker-compose needs this to pass to containers, in order to make `boto3` recognizes the correct IAM account and its policies.
+
+**NOTE**:"You can ditch/ignore the inline variables if you have an ~/.aws/credentials file set
 
 **WARNING**: I'm assuming at this point you already have a specific IAM user created with bare minimum permissions for SQS and all the required things. That wasn't requested on documentation, that's why!
 
